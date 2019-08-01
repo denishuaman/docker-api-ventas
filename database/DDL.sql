@@ -36,9 +36,11 @@ DROP TABLE IF EXISTS `ventas`.`persona` ;
 
 CREATE TABLE IF NOT EXISTS `ventas`.`persona` (
   `id_persona` BIGINT NOT NULL AUTO_INCREMENT COMMENT '',
+  `dni` VARCHAR(8) NOT NULL COMMENT '',
   `nombres` VARCHAR(100) NOT NULL COMMENT '',
   `apellidos` VARCHAR(100) NOT NULL COMMENT '',
-  PRIMARY KEY (`id_persona`)  COMMENT '')
+  PRIMARY KEY (`id_persona`)  COMMENT '',
+  UNIQUE INDEX `dni_UNIQUE` (`dni` ASC)  COMMENT '')
 ENGINE = InnoDB;
 
 
