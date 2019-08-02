@@ -1,0 +1,22 @@
+server:
+  port: 8082
+
+restful:
+  timeout: 10000
+
+url:
+  api:
+    persona:
+      buscar-por-dni: ${hostapi}/api/personas/buscar
+
+spring:
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+    hibernate:
+      ddl-auto: none
+  datasource:
+    url: jdbc:mysql://localhost:3306/ventas?useUnicode=true&characterEncoding=utf8&useSSL=false&requireSSL=false
+    username: root
+    password: root
