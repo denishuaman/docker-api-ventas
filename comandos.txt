@@ -6,3 +6,11 @@ $ docker history <id_imagen>
 
 Crear el contenedor de la imagen
 $ docker run -d -p 3307:3306 --name bd_ventas denishuaman/mysql_ventas
+
+Construir los jar de las APIs
+
+apiPersona
+$ mvn -f apiPersona/pom.xml clean package -Dmaven.test.skip=true
+
+apiVenta
+$ mvn -f apiVenta/pom.xml clean package -Dmaven.test.skip=true

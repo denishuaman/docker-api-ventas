@@ -5,7 +5,7 @@ services:
   mysql_server:
     build: ./database/
     image: denishuaman/mysql_ventas:latest
-    port:
+    ports:
       - "3307:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=root
