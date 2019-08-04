@@ -68,7 +68,7 @@ public class VentaServiceImpl implements IVentaService {
 		if (persona == null) {
 			throw new ModelNotFoundException("La persona que realizó la venta no está registrada");
 		}
-		venta.getPersona().setIdPersona(persona.getIdPersona());
+		venta.setPersona(persona);
 		if (venta.getDetalleVenta() == null || venta.getDetalleVenta().isEmpty()) {
 			throw new EmptyObjectException("Debe indicar el detalle de la venta");
 		}
@@ -83,7 +83,7 @@ public class VentaServiceImpl implements IVentaService {
 			if (!producto.isPresent()) {
 				throw new ModelNotFoundException("El producto a vender no está registrado");
 			}
-			detalle.getProducto().setPrecio(producto.get().getPrecio());
+			detalle.setProducto(producto.get());
 		});
 	}
 	
