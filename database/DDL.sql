@@ -1,61 +1,39 @@
--- MySQL Workbench Forward Engineering
-
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
-
--- -----------------------------------------------------
--- Schema ventas
--- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `ventas` ;
-
--- -----------------------------------------------------
--- Schema ventas
--- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `ventas` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
 USE `ventas` ;
 
--- -----------------------------------------------------
--- Table `ventas`.`producto`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `ventas`.`producto` ;
+SET foreign_key_checks = 0;
 
-CREATE TABLE IF NOT EXISTS `ventas`.`producto` (
-  `id_producto` BIGINT NOT NULL AUTO_INCREMENT COMMENT '',
-  `nombre` VARCHAR(100) NOT NULL COMMENT '',
-  `marca` VARCHAR(100) NOT NULL COMMENT '',
-  `precio` DOUBLE NOT NULL COMMENT '',
-  PRIMARY KEY (`id_producto`)  COMMENT '')
+DROP TABLE IF EXISTS producto;
+DROP TABLE IF EXISTS persona;
+DROP TABLE IF EXISTS venta;
+DROP TABLE IF EXISTS detalle_venta;
+
+SET foreign_key_checks = 1;
+
+CREATE TABLE producto (
+  `id_producto` BIGINT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(100) NOT NULL,
+  `marca` VARCHAR(100) NOT NULL,
+  `precio` DOUBLE NOT NULL,
+  PRIMARY KEY (`id_producto`))
 ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
--- Table `ventas`.`persona`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `ventas`.`persona` ;
-
-CREATE TABLE IF NOT EXISTS `ventas`.`persona` (
-  `id_persona` BIGINT NOT NULL AUTO_INCREMENT COMMENT '',
-  `dni` VARCHAR(8) NOT NULL COMMENT '',
-  `nombres` VARCHAR(100) NOT NULL COMMENT '',
-  `apellidos` VARCHAR(100) NOT NULL COMMENT '',
-  PRIMARY KEY (`id_persona`)  COMMENT '',
-  UNIQUE INDEX `dni_UNIQUE` (`dni` ASC)  COMMENT '')
+CREATE TABLE persona (
+  `id_persona` BIGINT NOT NULL AUTO_INCREMENT,
+  `dni` VARCHAR(8) NOT NULL,
+  `nombres` VARCHAR(100) NOT NULL,
+  `apellidos` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`id_persona`) ,
+  UNIQUE INDEX `dni_UNIQUE` (`dni` ASC)  )
 ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
--- Table `ventas`.`venta`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `ventas`.`venta` ;
-
-CREATE TABLE IF NOT EXISTS `ventas`.`venta` (
-  `id_venta` BIGINT NOT NULL AUTO_INCREMENT COMMENT '',
-  `id_persona` BIGINT NOT NULL COMMENT '',
-  `importe` DOUBLE NOT NULL COMMENT '',
-  `fecha` TIMESTAMP NOT NULL COMMENT '',
-  PRIMARY KEY (`id_venta`)  COMMENT '',
-  INDEX `fk_venta_persona_idx` (`id_persona` ASC)  COMMENT '',
+CREATE TABLE venta (
+  `id_venta` BIGINT NOT NULL AUTO_INCREMENT,
+  `id_persona` BIGINT NOT NULL,
+  `importe` DOUBLE NOT NULL,
+  `fecha` TIMESTAMP NOT NULL,
+  PRIMARY KEY (`id_venta`) ,
+  INDEX `fk_venta_persona_idx` (`id_persona` ASC) ,
   CONSTRAINT `fk_venta_persona`
     FOREIGN KEY (`id_persona`)
     REFERENCES `ventas`.`persona` (`id_persona`)
@@ -63,20 +41,14 @@ CREATE TABLE IF NOT EXISTS `ventas`.`venta` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
--- Table `ventas`.`detalle_venta`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `ventas`.`detalle_venta` ;
-
-CREATE TABLE IF NOT EXISTS `ventas`.`detalle_venta` (
-  `id_detalle_venta` BIGINT NOT NULL AUTO_INCREMENT COMMENT '',
-  `id_venta` BIGINT NOT NULL COMMENT '',
-  `id_producto` BIGINT NOT NULL COMMENT '',
-  `cantidad` INT NULL COMMENT '',
-  INDEX `fk_venta_has_producto_producto1_idx` (`id_producto` ASC)  COMMENT '',
-  INDEX `fk_venta_has_producto_venta1_idx` (`id_venta` ASC)  COMMENT '',
-  PRIMARY KEY (`id_detalle_venta`)  COMMENT '',
+CREATE TABLE IF NOT EXISTS detalle_venta (
+  `id_detalle_venta` BIGINT NOT NULL AUTO_INCREMENT,
+  `id_venta` BIGINT NOT NULL,
+  `id_producto` BIGINT NOT NULL,
+  `cantidad` INT NULL,
+  INDEX `fk_venta_has_producto_producto1_idx` (`id_producto` ASC) ,
+  INDEX `fk_venta_has_producto_venta1_idx` (`id_venta` ASC) ,
+  PRIMARY KEY (`id_detalle_venta`) ,
   CONSTRAINT `fk_venta_has_producto_venta1`
     FOREIGN KEY (`id_venta`)
     REFERENCES `ventas`.`venta` (`id_venta`)
@@ -88,8 +60,3 @@ CREATE TABLE IF NOT EXISTS `ventas`.`detalle_venta` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
-
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
