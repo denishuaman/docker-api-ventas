@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -41,6 +42,11 @@ public class Venta {
 			CascadeType.REMOVE }, fetch = FetchType.LAZY, orphanRemoval = true)
 	private List<DetalleVenta> detalleVenta;
 
+	@PrePersist
+	public void prePersist() {
+		this.fecha = LocalDateTime.now();
+	}
+	
 	public Long getIdVenta() {
 		return idVenta;
 	}

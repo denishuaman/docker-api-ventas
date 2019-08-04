@@ -7,7 +7,7 @@ restful:
 url:
   api:
     persona:
-      buscar-por-dni: ${hostapi}/api/personas/buscar
+      buscar-por-dni: http://localhost:8081/api/personas/buscar
 
 spring:
   jpa:

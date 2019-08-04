@@ -30,6 +30,8 @@ public class VentaServiceImpl implements IVentaService {
 	private IPersonaService personaService;
 	@Autowired
 	private IProductoRepo productoRepo;
+	
+	private double importeVenta;
 
 	@Override
 	public Venta registrar(Venta t) {
@@ -59,34 +61,45 @@ public class VentaServiceImpl implements IVentaService {
 		if (venta.getPersona() == null) {
 			throw new EmptyObjectException("Debe indicar la persona que realizó la venta");
 		}
-		if (venta.getPersona().getIdPersona() == null) {
-			throw new ModelNotFoundException("Debe indicar el código de la persona que realizó la venta");
+		if (venta.getPersona().getDni() == null || venta.getPersona().getDni().trim().isEmpty()) {
+			throw new ModelNotFoundException("Debe indicar el DNI de la persona que realizó la venta");
 		}
 		Persona persona = personaService.buscarPorDni(venta.getPersona().getDni());
 		if (persona == null) {
 			throw new ModelNotFoundException("La persona que realizó la venta no está registrada");
 		}
+		venta.getPersona().setIdPersona(persona.getIdPersona());
 		if (venta.getDetalleVenta() == null || venta.getDetalleVenta().isEmpty()) {
 			throw new EmptyObjectException("Debe indicar el detalle de la venta");
 		}
-		venta.getDetalleVenta().forEach(det -> {
-			if (det.getProducto() == null) {
+		venta.getDetalleVenta().forEach(detalle -> {
+			if (detalle.getProducto() == null) {
 				throw new EmptyObjectException("Debe indicar el producto vendido");
 			}
-			if (det.getProducto().getIdProducto() == null) {
+			if (detalle.getProducto().getIdProducto() == null) {
 				throw new ModelNotFoundException("Debe indicar el código del producto vendido");
 			}
-			Optional<Producto> producto = productoRepo.findById(det.getProducto().getIdProducto());
+			Optional<Producto> producto = productoRepo.findById(detalle.getProducto().getIdProducto());
 			if (!producto.isPresent()) {
 				throw new ModelNotFoundException("El producto a vender no está registrado");
 			}
+			detalle.getProducto().setPrecio(producto.get().getPrecio());
 		});
+	}
+	
+	private void calcularImporteVenta(Venta venta) {
+		this.importeVenta = 0d;
+		venta.getDetalleVenta().forEach((detalle) -> {
+			this.importeVenta += detalle.getProducto().getPrecio().doubleValue() * detalle.getCantidad().intValue();
+		});
+		venta.setImporte(new Double(importeVenta));
 	}
 
 	@Transactional
 	@Override
 	public Venta registrarVentaConDetalle(Venta venta) {
 		validarDatosDeVenta(venta);
+		calcularImporteVenta(venta);
 		venta.getDetalleVenta().forEach(detalle -> {
 			detalle.setVenta(venta);
 		});
