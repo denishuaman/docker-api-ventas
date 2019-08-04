@@ -7,7 +7,7 @@ restful:
 url:
   api:
     persona:
-      buscar-por-dni: http://localhost:8081/api/personas/buscar
+      buscar-por-dni: ${hostapi}/api/personas/buscar
 
 spring:
   jpa:
@@ -17,6 +17,6 @@ spring:
     hibernate:
       ddl-auto: none
   datasource:
-    url: jdbc:mysql://localhost:3306/ventas?useUnicode=true&characterEncoding=utf8&useSSL=false&requireSSL=false
-    username: root
-    password: root
+    url: jdbc:mysql://${host}:${port}/${database}?useUnicode=true&characterEncoding=utf8&useSSL=false&requireSSL=false
+    username: ${username}
+    password: ${password}
