@@ -1,0 +1,8 @@
+Creación de la imagen de MySql Ventas
+$ docker build -t mysql_ventas .
+
+Comando para ver el historial de la imagen creada
+$ docker history <id_imagen>
+
+Crear el contenedor de la imagen
+$ docker run -d -p 3307:3306 --name bd_ventas denishuaman/mysql_ventas

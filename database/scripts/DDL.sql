@@ -1,4 +1,4 @@
-CREATE SCHEMA IF NOT EXISTS `ventas` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
+CREATE DATABASE IF NOT EXISTS ventas CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `ventas` ;
 
 SET foreign_key_checks = 0;

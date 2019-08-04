@@ -1,7 +1,7 @@
 USE ventas;
 
-INSERT INTO `persona` VALUES(3,'08123232','Juan','Pérez Lopez');
-INSERT INTO `persona` VALUES(4,'09222322','María','Cortez');
+INSERT INTO `persona` VALUES(3,'01234567','Juan','Perez Lopez');
+INSERT INTO `persona` VALUES(4,'09222322','Luis','Cortez');
 
 INSERT INTO `producto` VALUES(1,'Teclado','Logitech',30.5);
 INSERT INTO `producto` VALUES(2,'Mouse','Logitech',20);
