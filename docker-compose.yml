@@ -5,8 +5,8 @@ services:
   mysql_server:
     build: ./database/
     image: denishuaman/mysql_ventas:latest
-    ports:
-      - "3307:3306"
+    # ports:
+    #   - "3307:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=ventas
@@ -23,8 +23,8 @@ services:
   apiventa:
     build: ./apiVenta/
     image: denishuaman/api-venta:latest
-    ports:
-      - "8082:8082"
+    # ports:
+    #   - "8082:8082"
     environment:
       - hostapi=http://apipersona:8081
       - host=mysql_server
@@ -42,8 +42,8 @@ services:
   apipersona:
     build: ./apiPersona/
     image: denishuaman/api-persona:latest
-    ports:
-      - "8081:8081"
+    # ports:
+    #   - "8081:8081"
     environment:
       - host=mysql_server
       - port=3306
@@ -54,6 +54,18 @@ services:
       - mysql_server
     restart: on-failure
     entrypoint: dockerize -wait tcp://mysql_server:3306 -timeout 10m java -jar /app.jar
+    networks:
+      - backend
+
+  proxy:
+    build: ./proxy-backend/
+    image: denishuaman/proxy-venta:latest
+    ports:
+      - "80:80"
+    depends_on: 
+      - apipersona
+      - apiventa
+    restart: on-failure
     networks:
       - backend
 
