@@ -1,0 +1,108 @@
+version: '3.4'
+
+services:
+
+  mysql_server:
+    # build es ignorado en swarm
+    build: ./database/
+    image: denishuaman/mysql_ventas:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=ventas
+      - MYSQL_USER=app
+      - MYSQL_PASSWORD=toor
+      - MYSQL_ROOT_HOST=%
+    volumes: 
+      - my-data-mysql:/var/lib/mysql/
+    command: --default-authentication-plugin=mysql_native_password
+    networks:
+      - backend
+    deploy:
+     replicas: 1
+     resources:
+       limits:
+         cpus: "0.3"
+         memory: 512M
+     restart_policy:
+       condition: on-failure
+     placement:
+       constraints: [node.role == worker]
+
+  apiventa:
+    build: ./apiVenta/
+    image: denishuaman/api-venta:latest
+    environment: 
+      - hostapi=http://apipersona:8081
+      - host=mysql_server
+      - port=3306
+      - database=ventas
+      - username=root
+      - password=root
+    depends_on:
+      - mysql_server
+    entrypoint: dockerize -wait tcp://mysql_server:3306 -timeout 10m java -jar /app.jar
+    networks:
+      - backend
+    deploy:
+     replicas: 1
+     resources:
+       limits:
+         cpus: "0.2"
+         memory: 512M
+     restart_policy:
+       condition: on-failure
+     placement:
+       constraints: [node.role == worker]
+
+  apipersona:
+    build: ./apiPersona/
+    image: denishuaman/api-persona:latest
+    environment: 
+      - host=mysql_server
+      - port=3306
+      - database=ventas
+      - username=root
+      - password=root
+    depends_on: 
+      - mysql_server
+    entrypoint: dockerize -wait tcp://mysql_server:3306 -timeout 10m java -jar /app.jar
+    networks:
+      - backend
+    deploy:
+     replicas: 1
+     resources:
+       limits:
+         cpus: "0.1"
+         memory: 256M
+     restart_policy:
+       condition: on-failure
+     placement:
+       constraints: [node.role == worker]
+
+  proxy:
+    build: ./proxy-backend/
+    image: denishuaman/proxy-venta:latest
+    ports:
+      - "80:80"
+    depends_on: 
+      - apipersona
+      - apiventa
+    restart: always
+    networks:
+      - backend
+    deploy:
+     replicas: 2
+     resources:
+       limits:
+         cpus: "0.2"
+         memory: 256M
+     restart_policy:
+       condition: on-failure
+     placement:
+       constraints: [node.role == manager]
+
+volumes:
+  my-data-mysql:
+
+networks:
+  backend:
