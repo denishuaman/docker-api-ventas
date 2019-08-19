@@ -1,0 +1,380 @@
+{
+	"info": {
+		"_postman_id": "eaa83e5f-4078-415d-8173-e937aad3be78",
+		"name": "DOCKER-API-VENTAS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "registrar persona",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"dni\": \"45676882\",\n\t\"nombres\": \"Manual\",\n\t\"apellidos\": \"Gonzales\"\n}"
+				},
+				"url": {
+					"raw": "http://192.168.99.101/api/personas/registrar",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"99",
+						"101"
+					],
+					"path": [
+						"api",
+						"personas",
+						"registrar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buscar persona por dni",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://192.168.99.101/api/personas/buscar/45676882",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"99",
+						"101"
+					],
+					"path": [
+						"api",
+						"personas",
+						"buscar",
+						"45676882"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar personas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://192.168.99.101/api/personas/listar",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"99",
+						"101"
+					],
+					"path": [
+						"api",
+						"personas",
+						"listar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "modificar persona",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idPersona\": 5,\r\n    \"dni\": \"45676882\",\r\n    \"nombres\": \"Manuel\",\r\n    \"apellidos\": \"Gonzales\"\r\n}"
+				},
+				"url": {
+					"raw": "http://192.168.99.101/api/personas/modificar",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"99",
+						"101"
+					],
+					"path": [
+						"api",
+						"personas",
+						"modificar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "eliminar persona",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://192.168.99.101/api/personas/eliminar/45676882",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"99",
+						"101"
+					],
+					"path": [
+						"api",
+						"personas",
+						"eliminar",
+						"45676882"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar productos",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://192.168.99.101/api/productos/listar",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"99",
+						"101"
+					],
+					"path": [
+						"api",
+						"productos",
+						"listar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buscar producto",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://192.168.99.102/api/productos/buscar/7",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"99",
+						"102"
+					],
+					"path": [
+						"api",
+						"productos",
+						"buscar",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "registrar producto",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"Procesador\",\n    \"marca\": \"Intel\",\n    \"precio\": 1000.0\n}"
+				},
+				"url": {
+					"raw": "http://192.168.99.102/api/productos/registrar",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"99",
+						"102"
+					],
+					"path": [
+						"api",
+						"productos",
+						"registrar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "modificar producto",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"idProducto\": 7,\n    \"nombre\": \"Procesador Core i9\",\n    \"marca\": \"Intel\",\n    \"precio\": 2000.00\n}"
+				},
+				"url": {
+					"raw": "http://192.168.99.101/api/productos/modificar",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"99",
+						"101"
+					],
+					"path": [
+						"api",
+						"productos",
+						"modificar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "eliminar producto",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://192.168.99.101/api/productos/eliminar/7",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"99",
+						"101"
+					],
+					"path": [
+						"api",
+						"productos",
+						"eliminar",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "registrar venta",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"persona\": {\n        \"dni\": \"09222322\"\n    },\n    \"detalleVenta\": [\n        {\n            \"producto\": {\n                \"idProducto\": 4\n            },\n            \"cantidad\": 1\n        },\n        {\n            \"producto\": {\n                \"idProducto\": 6\n            },\n            \"cantidad\": 1\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "http://192.168.99.101/api/ventas/registrar",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"99",
+						"101"
+					],
+					"path": [
+						"api",
+						"ventas",
+						"registrar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buscar venta",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://192.168.99.102/api/ventas/buscar/3",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"99",
+						"102"
+					],
+					"path": [
+						"api",
+						"ventas",
+						"buscar",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
