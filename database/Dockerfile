@@ -1,9 +1,8 @@
-FROM mysql:5.7.25
+FROM postgres
 LABEL maintainer="denishuamanacu@gmail.com"
 
-ENV MYSQL_ROOT_PASSWORD=root
-ENV MYSQL_DATABASE=ventas
-ENV MYSQL_ROOT_HOST=%
+ENV POSTGRES_PASSWORD=root
+ENV POSTGRES_DB=ventas
 
 COPY ./scripts/ /docker-entrypoint-initdb.d/
-CMD ["--default-authentication-plugin=mysql_native_password"]
+RUN chmod a+r /docker-entrypoint-initdb.d/*

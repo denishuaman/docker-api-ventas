@@ -5,10 +5,14 @@ spring:
   jpa:
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL5Dialect
-    hibernate:
-      ddl-auto: none
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    database: postgresql
+    show-sql: true
+    hibernate:      ddl-auto: none    
   datasource:
-    url: jdbc:mysql://${host}:${port}/${database}?useUnicode=true&characterEncoding=utf8&useSSL=false&requireSSL=false
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${host}:${port}/${database}
     username: ${username}
     password: ${password}
