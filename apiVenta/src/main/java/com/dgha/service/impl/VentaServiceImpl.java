@@ -1,5 +1,6 @@
 package com.dgha.service.impl;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,6 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dgha.dto.VentasPorFechaDto;
 import com.dgha.exception.EmptyObjectException;
 import com.dgha.exception.ModelNotFoundException;
 import com.dgha.model.Persona;
@@ -108,5 +110,25 @@ public class VentaServiceImpl implements IVentaService {
 			dvRepo.save(det);
 		});
 		return venta;
+	}
+	
+	@Transactional
+	@Override
+	public VentasPorFechaDto obtenerVentasPorRangoDeFechas(LocalDateTime fechaInicial, LocalDateTime fechaFinal) throws EmptyObjectException {
+		LocalDateTime fechaFin = fechaFinal.plusNanos(1);
+		System.out.println("VentaServiceImpl.obtenerVentasPorFecha(): fecha final=" + fechaFin);
+		List<Venta> ventas = repo.obtenerVentasPorRangoFechas(fechaInicial, fechaFin);
+		if (ventas != null && !ventas.isEmpty()) {
+			VentasPorFechaDto ventasPorFecha = new VentasPorFechaDto();
+			ventasPorFecha.setVentas(ventas);
+			Double importeTotal = 0d;
+			for (Venta venta : ventas) {
+				importeTotal += venta.getImporte();
+			}
+			ventasPorFecha.setImporteTotal(importeTotal);
+			return ventasPorFecha;
+		} else {
+			throw new EmptyObjectException("No hay ventas para la fecha indicada");
+		}
 	}
 }

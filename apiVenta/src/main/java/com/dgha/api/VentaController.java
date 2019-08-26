@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dgha.dto.FiltroConsultaVentaDto;
+import com.dgha.dto.VentasPorFechaDto;
 import com.dgha.exception.ModelNotFoundException;
 import com.dgha.model.Venta;
 import com.dgha.service.IVentaService;
@@ -37,5 +39,12 @@ public class VentaController {
 		if (!obj.isPresent())
 			throw new ModelNotFoundException("ID no encontrado: " + id);
 		return new ResponseEntity<Venta>(obj.get(), HttpStatus.OK);
+	}
+	
+	@PostMapping("consultar-por-fecha")
+	public ResponseEntity<VentasPorFechaDto> consultarVentasPorFecha(@RequestBody FiltroConsultaVentaDto filtro) {
+		VentasPorFechaDto ventasPorFecha = service.obtenerVentasPorRangoDeFechas(filtro.getFechaInicial(),
+				filtro.getFechaFinal());
+		return new ResponseEntity<VentasPorFechaDto>(ventasPorFecha, HttpStatus.OK);
 	}
 }
