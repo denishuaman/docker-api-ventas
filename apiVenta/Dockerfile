@@ -18,10 +18,10 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
 COPY --from=builder /app/target/*.jar /app.jar
 
 ENV hostapi="http://apipersona:8081"
-ENV host="mysql_server"
-ENV port="3306"
+ENV host="postgresql_server"
+ENV port="5432"
 ENV database="ventas"
-ENV username="root"
+ENV username="postgres"
 ENV password="root"
 
 ENTRYPOINT exec java -jar /app.jar

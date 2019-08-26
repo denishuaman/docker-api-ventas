@@ -2,19 +2,14 @@ version: '3.4'
 
 services:
 
-  mysql_server:
-    # build es ignorado en swarm
+  postgresql_server:
     build: ./database/
-    image: denishuaman/mysql_ventas:latest
+    image: denishuaman/postgresql_ventas:latest
     environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=ventas
-      - MYSQL_USER=app
-      - MYSQL_PASSWORD=toor
-      - MYSQL_ROOT_HOST=%
-    volumes: 
-      - my-data-mysql:/var/lib/mysql/
-    command: --default-authentication-plugin=mysql_native_password
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=ventas
+    volumes:
+      - my-data-postgresql:/var/lib/postgresql/
     networks:
       - backend
     deploy:
@@ -31,16 +26,16 @@ services:
   apiventa:
     build: ./apiVenta/
     image: denishuaman/api-venta:latest
-    environment: 
+    environment:
       - hostapi=http://apipersona:8081
-      - host=mysql_server
-      - port=3306
+      - host=postgresql_server
+      - port=5432
       - database=ventas
-      - username=root
+      - username=postgres
       - password=root
     depends_on:
-      - mysql_server
-    entrypoint: dockerize -wait tcp://mysql_server:3306 -timeout 10m java -jar /app.jar
+      - postgresql_server
+    entrypoint: dockerize -wait tcp://postgresql_server:5432 -timeout 10m java -jar /app.jar
     networks:
       - backend
     deploy:
@@ -57,15 +52,15 @@ services:
   apipersona:
     build: ./apiPersona/
     image: denishuaman/api-persona:latest
-    environment: 
-      - host=mysql_server
-      - port=3306
+    environment:
+      - host=postgresql_server
+      - port=5432
       - database=ventas
-      - username=root
+      - username=postgres
       - password=root
-    depends_on: 
-      - mysql_server
-    entrypoint: dockerize -wait tcp://mysql_server:3306 -timeout 10m java -jar /app.jar
+    depends_on:
+      - postgresql_server
+    entrypoint: dockerize -wait tcp://postgresql_server:5432 -timeout 10m java -jar /app.jar
     networks:
       - backend
     deploy:
@@ -87,7 +82,7 @@ services:
     depends_on: 
       - apipersona
       - apiventa
-    restart: always
+    restart: on-failure
     networks:
       - backend
     deploy:
@@ -102,7 +97,6 @@ services:
        constraints: [node.role == manager]
 
 volumes:
-  my-data-mysql:
-
+  my-data-postgresql:
 networks:
   backend:
