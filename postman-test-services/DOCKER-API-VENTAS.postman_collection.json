@@ -19,16 +19,16 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"dni\": \"45676882\",\n\t\"nombres\": \"Manual\",\n\t\"apellidos\": \"Gonzales\"\n}"
+					"raw": "{\n\t\"dni\": \"08232314\",\n\t\"nombres\": \"Julio\",\n\t\"apellidos\": \"Mendoza\"\n}"
 				},
 				"url": {
-					"raw": "http://192.168.99.101/api/personas/registrar",
+					"raw": "http://192.168.99.100/api/personas/registrar",
 					"protocol": "http",
 					"host": [
 						"192",
 						"168",
 						"99",
-						"101"
+						"100"
 					],
 					"path": [
 						"api",
@@ -45,7 +45,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://192.168.99.101/api/personas/buscar/45676882",
+					"raw": "http://192.168.99.101/api/personas/buscar/09222322",
 					"protocol": "http",
 					"host": [
 						"192",
@@ -57,7 +57,7 @@
 						"api",
 						"personas",
 						"buscar",
-						"45676882"
+						"09222322"
 					]
 				}
 			},
@@ -69,13 +69,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://192.168.99.101/api/personas/listar",
+					"raw": "http://192.168.99.100/api/personas/listar",
 					"protocol": "http",
 					"host": [
 						"192",
 						"168",
 						"99",
-						"101"
+						"100"
 					],
 					"path": [
 						"api",
@@ -100,7 +100,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"idPersona\": 5,\r\n    \"dni\": \"45676882\",\r\n    \"nombres\": \"Manuel\",\r\n    \"apellidos\": \"Gonzales\"\r\n}"
+					"raw": "{\n    \"idPersona\": 4,\n    \"dni\": \"08232312\",\n    \"nombres\": \"Javier 1\",\n    \"apellidos\": \"Izaguirre 1\"\n}"
 				},
 				"url": {
 					"raw": "http://192.168.99.101/api/personas/modificar",
@@ -133,19 +133,19 @@
 					}
 				],
 				"url": {
-					"raw": "http://192.168.99.101/api/personas/eliminar/45676882",
+					"raw": "http://192.168.99.103/api/personas/eliminar/47964421",
 					"protocol": "http",
 					"host": [
 						"192",
 						"168",
 						"99",
-						"101"
+						"103"
 					],
 					"path": [
 						"api",
 						"personas",
 						"eliminar",
-						"45676882"
+						"47964421"
 					]
 				}
 			},
@@ -164,13 +164,13 @@
 					}
 				],
 				"url": {
-					"raw": "http://192.168.99.101/api/productos/listar",
+					"raw": "http://192.168.99.100/api/productos/listar",
 					"protocol": "http",
 					"host": [
 						"192",
 						"168",
 						"99",
-						"101"
+						"100"
 					],
 					"path": [
 						"api",
@@ -194,19 +194,19 @@
 					}
 				],
 				"url": {
-					"raw": "http://192.168.99.102/api/productos/buscar/7",
+					"raw": "http://192.168.99.103/api/productos/buscar/1",
 					"protocol": "http",
 					"host": [
 						"192",
 						"168",
 						"99",
-						"102"
+						"103"
 					],
 					"path": [
 						"api",
 						"productos",
 						"buscar",
-						"7"
+						"1"
 					]
 				}
 			},
@@ -226,16 +226,16 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"nombre\": \"Procesador\",\n    \"marca\": \"Intel\",\n    \"precio\": 1000.0\n}"
+					"raw": "{\n    \"nombre\": \"TV QLED\",\n    \"marca\": \"LG\",\n    \"precio\": 3000.0\n}"
 				},
 				"url": {
-					"raw": "http://192.168.99.102/api/productos/registrar",
+					"raw": "http://192.168.99.103/api/productos/registrar",
 					"protocol": "http",
 					"host": [
 						"192",
 						"168",
 						"99",
-						"102"
+						"103"
 					],
 					"path": [
 						"api",
@@ -260,16 +260,16 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"idProducto\": 7,\n    \"nombre\": \"Procesador Core i9\",\n    \"marca\": \"Intel\",\n    \"precio\": 2000.00\n}"
+					"raw": "{\n    \"idProducto\": 7,\n    \"nombre\": \"SMARTH TV OLED\",\n    \"marca\": \"LG\",\n    \"precio\": 3000\n}"
 				},
 				"url": {
-					"raw": "http://192.168.99.101/api/productos/modificar",
+					"raw": "http://192.168.99.103/api/productos/modificar",
 					"protocol": "http",
 					"host": [
 						"192",
 						"168",
 						"99",
-						"101"
+						"103"
 					],
 					"path": [
 						"api",
@@ -293,19 +293,19 @@
 					}
 				],
 				"url": {
-					"raw": "http://192.168.99.101/api/productos/eliminar/7",
+					"raw": "http://192.168.99.103/api/productos/eliminar/8",
 					"protocol": "http",
 					"host": [
 						"192",
 						"168",
 						"99",
-						"101"
+						"103"
 					],
 					"path": [
 						"api",
 						"productos",
 						"eliminar",
-						"7"
+						"8"
 					]
 				}
 			},
@@ -325,16 +325,16 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"persona\": {\n        \"dni\": \"09222322\"\n    },\n    \"detalleVenta\": [\n        {\n            \"producto\": {\n                \"idProducto\": 4\n            },\n            \"cantidad\": 1\n        },\n        {\n            \"producto\": {\n                \"idProducto\": 6\n            },\n            \"cantidad\": 1\n        }\n    ]\n}"
+					"raw": "{\n    \"persona\": {\n        \"dni\": \"09222329\"\n    },\n    \"detalleVenta\": [\n        {\n            \"producto\": {\n                \"idProducto\": 3\n            },\n            \"cantidad\": 1\n        }\n    ]\n}"
 				},
 				"url": {
-					"raw": "http://192.168.99.101/api/ventas/registrar",
+					"raw": "http://192.168.99.105/api/ventas/registrar",
 					"protocol": "http",
 					"host": [
 						"192",
 						"168",
 						"99",
-						"101"
+						"105"
 					],
 					"path": [
 						"api",
@@ -358,19 +358,53 @@
 					}
 				],
 				"url": {
-					"raw": "http://192.168.99.102/api/ventas/buscar/3",
+					"raw": "http://192.168.99.100/api/ventas/buscar/1",
 					"protocol": "http",
 					"host": [
 						"192",
 						"168",
 						"99",
-						"102"
+						"100"
 					],
 					"path": [
 						"api",
 						"ventas",
 						"buscar",
-						"3"
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "consultar ventas por fecha",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"fechaInicial\": \"2019-08-27T02:00:00.000\",\n\t\"fechaFinal\": \"2019-08-27T03:00:00.000\"\n}\n"
+				},
+				"url": {
+					"raw": "http://192.168.99.106/api/ventas/consultar-por-fecha",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"99",
+						"106"
+					],
+					"path": [
+						"api",
+						"ventas",
+						"consultar-por-fecha"
 					]
 				}
 			},
