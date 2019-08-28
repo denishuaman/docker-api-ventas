@@ -11,6 +11,7 @@ import { MaterialModule } from './material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PersonaDialogoComponent } from './pages/persona/persona-dialogo/persona-dialogo.component';
 import { ProductoEdicionComponent } from './pages/producto/producto-edicion/producto-edicion.component';
+import { VentaComponent } from './pages/venta/venta.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ProductoEdicionComponent } from './pages/producto/producto-edicion/prod
     PersonaComponent,
     ProductoComponent,
     PersonaDialogoComponent,
-    ProductoEdicionComponent
+    ProductoEdicionComponent,
+    VentaComponent
   ],
   entryComponents: [
     PersonaDialogoComponent

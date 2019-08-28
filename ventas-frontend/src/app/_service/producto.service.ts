@@ -12,7 +12,7 @@ export class ProductoService {
   cambioProducto = new Subject<Producto[]>();
   mensaje = new Subject<string>();
 
-  urlWS: string = environment.HOST_API_VENTA;
+  urlWS: string = environment.HOST_API_PRODUCTOS;
 
   constructor(private http: HttpClient) { }
 

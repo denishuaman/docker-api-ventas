@@ -3,6 +3,7 @@ import { ProductoComponent } from './pages/producto/producto.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProductoEdicionComponent } from './pages/producto/producto-edicion/producto-edicion.component';
+import { VentaComponent } from './pages/venta/venta.component';
 
 
 const routes: Routes = [
@@ -10,7 +11,8 @@ const routes: Routes = [
     {path: 'nuevo', component: ProductoEdicionComponent},
     {path: 'edicion/:idProducto', component: ProductoEdicionComponent}
   ]},
-  {path: 'persona', component: PersonaComponent}
+  {path: 'persona', component: PersonaComponent},
+  {path: 'venta', component: VentaComponent}
 ];
 
 @NgModule({
