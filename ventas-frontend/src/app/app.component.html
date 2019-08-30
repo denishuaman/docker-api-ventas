@@ -6,19 +6,10 @@
     </button>
     <h1 class="example-app-name">VENTAS APP</h1>
     <span class="example-spacer"></span>
-    <button mat-icon-button [matMenuTriggerFor]="menu">
+    <button mat-icon-button>
       <mat-icon>more_vert</mat-icon>
     </button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item routerLink="/perfil">
-        <mat-icon>account_box</mat-icon>
-        <span>Mi perfil</span>
-      </button>
-      <button mat-menu-item (click)="sidenav.opened = false">
-        <mat-icon>exit_to_app</mat-icon>
-        <span>Cerrar sesión</span>
-      </button>
-    </mat-menu>
+    <mat-menu></mat-menu>
   </mat-toolbar>
   <mat-sidenav-container class="example-sidenav-container">
     <mat-sidenav #sidenav style="width: 200px;">

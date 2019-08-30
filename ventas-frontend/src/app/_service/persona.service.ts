@@ -12,7 +12,7 @@ export class PersonaService {
   cambioPersona = new Subject<Persona[]>();
   mensaje = new Subject<string>();
 
-  urlWS: string = environment.HOST_API_PERSONA;
+  urlWS: string = `${environment.HOST}/api/personas`;
 
   constructor(private http: HttpClient) { }
 

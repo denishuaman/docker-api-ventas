@@ -4,9 +4,7 @@
 
 export const environment = {
   production: false,
-  HOST_API_PERSONA: 'http://localhost:8081/api/personas',
-  HOST_API_PRODUCTOS: 'http://localhost:8082/api/productos',
-  HOST_API_VENTAS: 'http://localhost:8082/api/ventas'
+  HOST: 'http://192.168.99.100'
 };
 
 /*

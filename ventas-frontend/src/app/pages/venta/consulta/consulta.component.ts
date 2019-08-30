@@ -53,6 +53,9 @@ export class ConsultaComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     }, error => {
+      this.dataSource = new MatTableDataSource([]);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
       console.error(error);
       this.snackBar.open(error.error.mensaje, 'Aviso', { duration: 3000 });
     })

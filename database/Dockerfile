@@ -1,4 +1,4 @@
-FROM postgres
+FROM postgres:11
 LABEL maintainer="denishuamanacu@gmail.com"
 
 ENV POSTGRES_PASSWORD=root

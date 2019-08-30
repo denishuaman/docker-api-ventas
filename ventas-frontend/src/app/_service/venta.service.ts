@@ -12,7 +12,7 @@ export class VentaService {
 
   mensaje = new Subject<string>();
 
-  urlWs: string = environment.HOST_API_VENTAS;
+  urlWs: string = `${environment.HOST}/api/ventas`;
 
   constructor(private http: HttpClient) { }
 
