@@ -48,13 +48,23 @@ export class PersonaComponent implements OnInit {
     this.dataSource.filter = valor.trim().toLowerCase();
   }
 
-  abrirDialogo(persona?: Persona) {
-    let p = persona != null ? persona : new Persona();
-    console.log('data de persona', p);
-    this.dialogo.open(PersonaDialogoComponent, {
-      width: '300px',
-      data: p
-    });
+  abrirDialogo(dni?: string) {
+    // let p = persona != null ? persona : new Persona();
+    if (dni) {
+      this.personaService.buscarPorDni(dni).subscribe(dataPersona => {
+        this.dialogo.open(PersonaDialogoComponent, {
+          width: '300px',
+          data: dataPersona
+        });
+      });
+    } else {
+      let persona = new Persona();
+      console.log('data de persona', persona);
+      this.dialogo.open(PersonaDialogoComponent, {
+        width: '300px',
+        data: persona
+      });
+    }
   }
 
   eliminar(persona: Persona) {

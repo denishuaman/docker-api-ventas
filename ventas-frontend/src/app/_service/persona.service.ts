@@ -20,6 +20,10 @@ export class PersonaService {
     return this.http.get<Persona[]>(`${this.urlWS}/listar`);
   }
 
+  buscarPorDni(dni: string) {
+    return this.http.get<Persona>(`${this.urlWS}/buscar/${dni}`);
+  }
+
   registrar(persona: Persona) {
     return this.http.post(`${this.urlWS}/registrar`, persona);
   }

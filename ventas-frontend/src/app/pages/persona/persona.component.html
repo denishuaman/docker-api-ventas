@@ -27,7 +27,7 @@
         <ng-container matColumnDef="acciones">
             <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
             <mat-cell *matCellDef="let row">
-                <button mat-button color="primary" (click)="abrirDialogo(row)">Actualizar</button>
+                <button mat-button color="primary" (click)="abrirDialogo(row.dni)">Actualizar</button>
                 <button mat-button color="accent" (click)="eliminar(row)">Eliminar</button>
             </mat-cell>
         </ng-container>
