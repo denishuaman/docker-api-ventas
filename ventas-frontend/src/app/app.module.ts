@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PersonaDialogoComponent } from './pages/persona/persona-dialogo/persona-dialogo.component';
 import { ProductoEdicionComponent } from './pages/producto/producto-edicion/producto-edicion.component';
 import { VentaComponent } from './pages/venta/venta.component';
+import { ConsultaComponent } from './pages/venta/consulta/consulta.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { VentaComponent } from './pages/venta/venta.component';
     ProductoComponent,
     PersonaDialogoComponent,
     ProductoEdicionComponent,
-    VentaComponent
+    VentaComponent,
+    ConsultaComponent
   ],
   entryComponents: [
     PersonaDialogoComponent

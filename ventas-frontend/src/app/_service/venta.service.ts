@@ -18,4 +18,12 @@ export class VentaService {
   registrar(venta: Venta) {
     return this.http.post(`${this.urlWs}/registrar`, venta);
   }
+
+  listar() {
+    return this.http.get<Venta[]>(`${this.urlWs}/listar`);
+  }
+
+  buscarPorId(idVenta: number) {
+    return this.http.get<Venta>(`${this.urlWs}/buscar/${idVenta}`);
+  }
 }
