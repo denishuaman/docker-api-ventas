@@ -14,11 +14,15 @@
             <mat-cell *matCellDef="let row">{{row.fecha | date: 'dd/MM/yyyy hh:mm:ss a'}}</mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="acciones">
+            <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <button mat-raised-button color="primary" (click)="consultarDetalle(row)">Ver</button>
+            </mat-cell>
+        </ng-container>
+
         <mat-header-row *matHeaderRowDef="nombresColumnas"></mat-header-row>
         <mat-row *matRowDef="let row; columns: nombresColumnas"></mat-row>
     </mat-table>
     <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 </div>
-<button mat-fab color="accent" (click)="consultarDetalle()" style="float: right; margin-right: 20px">
-    <mat-icon>search</mat-icon>
-</button>

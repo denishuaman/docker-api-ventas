@@ -1,0 +1,42 @@
+<div>
+    <mat-card class="example-card">
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Persona
+                </mat-panel-title>
+                <mat-panel-description>
+                    Ver datos
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-list>
+                <mat-list-item>DNI: {{venta.persona.dni}}</mat-list-item>
+                <mat-list-item>Nombres: {{venta.persona.nombres}}</mat-list-item>
+                <mat-list-item>Apellidos: {{venta.persona.apellidos}}</mat-list-item>
+            </mat-list>
+        </mat-expansion-panel>
+    </mat-card>
+
+    <mat-card class="example-card">
+        <mat-card-header>
+            <mat-card-title>Productos comprados</mat-card-title>
+        </mat-card-header>
+        <mat-accordion>
+            <mat-expansion-panel *ngFor="let d of venta.detalleVenta; let i = index">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{d.producto.nombre}} ({{d.producto.marca}})
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-list>
+                    <mat-list-item>Precio: S/ {{d.producto.precio}}</mat-list-item>
+                    <mat-list-item>Cantidad: {{d.cantidad}}</mat-list-item>
+                </mat-list>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </mat-card>
+    <br>
+    <div align="center">
+        <button mat-raised-button color="accent" (click)="cerrar()">Cerrar</button>
+    </div>
+</div>

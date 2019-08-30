@@ -13,6 +13,7 @@ import { PersonaDialogoComponent } from './pages/persona/persona-dialogo/persona
 import { ProductoEdicionComponent } from './pages/producto/producto-edicion/producto-edicion.component';
 import { VentaComponent } from './pages/venta/venta.component';
 import { ConsultaComponent } from './pages/venta/consulta/consulta.component';
+import { VentaDialogoComponent } from './pages/venta/venta-dialogo/venta-dialogo.component';
 
 @NgModule({
   declarations: [
@@ -22,10 +23,12 @@ import { ConsultaComponent } from './pages/venta/consulta/consulta.component';
     PersonaDialogoComponent,
     ProductoEdicionComponent,
     VentaComponent,
-    ConsultaComponent
+    ConsultaComponent,
+    VentaDialogoComponent
   ],
   entryComponents: [
-    PersonaDialogoComponent
+    PersonaDialogoComponent,
+    VentaDialogoComponent
   ],
   imports: [
     BrowserModule,

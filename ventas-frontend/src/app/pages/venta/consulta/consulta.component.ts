@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Venta } from 'src/app/_model/venta';
 import { VentaService } from 'src/app/_service/venta.service';
-import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
+import { VentaDialogoComponent } from '../venta-dialogo/venta-dialogo.component';
 
 @Component({
   selector: 'app-consulta',
@@ -10,7 +11,7 @@ import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 })
 export class ConsultaComponent implements OnInit {
 
-  nombresColumnas = ['idVenta', 'importe', 'fecha'];
+  nombresColumnas = ['idVenta', 'importe', 'fecha', 'acciones'];
   dataSource: MatTableDataSource<Venta>;
   venta: Venta[] = [];
 
@@ -20,7 +21,7 @@ export class ConsultaComponent implements OnInit {
   @ViewChild(MatSort, { static: true })
   sort: MatSort;
 
-  constructor(private ventaService: VentaService) { }
+  constructor(private ventaService: VentaService, private dialogo: MatDialog) { }
 
   ngOnInit() {
     this.ventaService.listar().subscribe(data => {
@@ -30,7 +31,11 @@ export class ConsultaComponent implements OnInit {
     });
   }
 
-  consultarDetalle() {
-    
+  consultarDetalle(venta: Venta) {
+    console.log('Venta seleccionada', venta);
+    this.dialogo.open(VentaDialogoComponent, {
+      data: venta,
+      maxHeight: '500px'
+    });
   }
 }
