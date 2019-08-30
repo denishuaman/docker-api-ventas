@@ -7,6 +7,7 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.dgha.dto.VentasPorFechaDto;
@@ -52,7 +53,7 @@ public class VentaServiceImpl implements IVentaService {
 
 	@Override
 	public List<Venta> listar() {
-		return null;
+		return repo.findAll(Sort.by(Sort.Direction.DESC, "fecha"));
 	}
 
 	@Override
@@ -114,10 +115,24 @@ public class VentaServiceImpl implements IVentaService {
 	
 	@Transactional
 	@Override
-	public VentasPorFechaDto obtenerVentasPorRangoDeFechas(LocalDateTime fechaInicial, LocalDateTime fechaFinal) throws EmptyObjectException {
-		LocalDateTime fechaFin = fechaFinal.plusNanos(1);
+	public VentasPorFechaDto obtenerVentasPorRangoDeFechas(LocalDateTime fechaInicial, LocalDateTime fechaFinal) throws EmptyObjectException, Exception {
+		System.out.println("VentaServiceImpl.obtenerVentasPorRangoDeFechas(): fechaInicial=" + fechaInicial);
+		System.out.println("VentaServiceImpl.obtenerVentasPorRangoDeFechas(): fechaFinal=" + fechaFinal);
+		
+		if(fechaInicial.isAfter(fechaFinal)) {
+			throw new Exception("La fecha inicial debe ser antes o la misma que la fecha final");
+		}
+		
+		fechaInicial = fechaInicial.minusHours(5);
+		fechaFinal = fechaFinal.minusHours(5);
+		
+		System.out.println("VentaServiceImpl.obtenerVentasPorRangoDeFechas(): fechaInicial=" + fechaInicial);
+		System.out.println("VentaServiceImpl.obtenerVentasPorRangoDeFechas(): fechaFinal=" + fechaFinal);
+		
+		LocalDateTime fechaFin = fechaFinal.plusDays(1);
 		System.out.println("VentaServiceImpl.obtenerVentasPorFecha(): fecha final=" + fechaFin);
 		List<Venta> ventas = repo.obtenerVentasPorRangoFechas(fechaInicial, fechaFin);
+		System.out.println("VentaServiceImpl.obtenerVentasPorRangoDeFechas(): Ventas="+ventas);
 		if (ventas != null && !ventas.isEmpty()) {
 			VentasPorFechaDto ventasPorFecha = new VentasPorFechaDto();
 			ventasPorFecha.setVentas(ventas);

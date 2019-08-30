@@ -48,6 +48,9 @@ import { MatTableModule, MatButtonModule, MatSortModule, MatPaginatorModule, Mat
     MatExpansionModule,
     MatAutocompleteModule,
     MatListModule
+  ],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'es-ES' }
   ]
 })
 export class MaterialModule { }

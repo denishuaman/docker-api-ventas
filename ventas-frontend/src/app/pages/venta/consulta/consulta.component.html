@@ -1,5 +1,23 @@
 <mat-toolbar>Registro de ventas</mat-toolbar>
 <div class="example-container mat-elevation z8">
+
+    <form [formGroup]="form" (ngSubmit)="buscar()">
+        <mat-form-field>
+            <input matInput [matDatepicker]="pickerFecIni" placeholder="Fecha inicial" formControlName="fechaInicial">
+            <mat-datepicker-toggle matSuffix [for]="pickerFecIni"></mat-datepicker-toggle>
+            <mat-datepicker #pickerFecIni></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput [matDatepicker]="pickerFecFin" placeholder="Fecha final" formControlName="fechaFinal">
+            <mat-datepicker-toggle matSuffix [for]="pickerFecFin"></mat-datepicker-toggle>
+            <mat-datepicker #pickerFecFin></mat-datepicker>
+        </mat-form-field>
+        <div align="center">
+            <button mat-raised-button color="primary" type="submit">Buscar</button>
+            <button mat-raised-button color="primary" type="button" (click)="buscarTodo()">Motrar todo</button>
+        </div>
+    </form>
+
     <mat-table [dataSource]="dataSource" matSort>
         <ng-container matColumnDef="idVenta">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Código</mat-header-cell>

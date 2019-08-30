@@ -11,7 +11,7 @@ import com.dgha.model.Venta;
 
 public interface IVentaRepo extends JpaRepository<Venta, Long> {
 
-	@Query("FROM Venta v WHERE v.fecha BETWEEN :fechaInicial AND :fechaFinal")
+	@Query("FROM Venta v WHERE v.fecha BETWEEN :fechaInicial AND :fechaFinal ORDER BY v.fecha DESC")
 	List<Venta> obtenerVentasPorRangoFechas(@Param("fechaInicial") LocalDateTime fechaInicial,
 			@Param("fechaFinal") LocalDateTime fechaFinal);
 }

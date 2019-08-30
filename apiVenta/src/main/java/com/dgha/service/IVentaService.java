@@ -11,5 +11,5 @@ public interface IVentaService extends ICRUD<Venta, Long> {
 	Venta registrarVentaConDetalle(Venta venta);
 
 	public VentasPorFechaDto obtenerVentasPorRangoDeFechas(LocalDateTime fechaInicial, LocalDateTime fechaFinal)
-			throws EmptyObjectException;
+			throws EmptyObjectException, Exception;
 }
