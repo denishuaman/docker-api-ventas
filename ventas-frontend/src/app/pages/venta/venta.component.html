@@ -1,0 +1,49 @@
+<mat-toolbar>Registro de Ventas</mat-toolbar>
+
+<div class="example-container">
+    <mat-form-field>
+        <mat-select placeholder="Seleccione a la persona" [(value)]="idPersonaSeleccionada">
+            <mat-option *ngFor="let p of personas" [value]="p.idPersona">
+                {{p.nombres}} {{p.apellidos}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-select placeholder="Seleccione el producto" [(value)]="idProductoSeleccionado">
+            <mat-option *ngFor="let pr of productos" [value]="pr.idProducto">
+                {{pr.nombre}} - {{pr.marca}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="number" min="1" placeholder="Indique la cantidad de productos a comprar"
+            [(ngModel)]="cantidad">
+    </mat-form-field>
+
+    <div align="center">
+        <button mat-raised-button color="primary" (click)="agregarDetalle()">Agregar Detalle</button>
+        <button mat-raised-button color="primary" (click)="registrarVenta()">Registrar venta</button>
+    </div>
+    <br>
+    <mat-card>
+        <mat-accordion>
+            <mat-expansion-panel *ngFor="let d of detalleVenta; let i = index">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Producto: {{d.producto.nombre}}
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Ver descripción
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <mat-list>
+                    <mat-list-item>Marca: {{d.producto.marca}}</mat-list-item>
+                    <mat-list-item>Precio: S/ {{d.producto.precio}}</mat-list-item>
+                    <mat-list-item>Cantidad: {{d.cantidad}}</mat-list-item>
+                </mat-list>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </mat-card>
+
+</div>
