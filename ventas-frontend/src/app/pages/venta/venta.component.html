@@ -25,7 +25,6 @@
         <button mat-raised-button color="primary" (click)="registrarVenta()">Registrar venta</button>
     </div>
     <br>
-    <mat-card>
         <mat-accordion>
             <mat-expansion-panel *ngFor="let d of detalleVenta; let i = index">
                 <mat-expansion-panel-header>
@@ -44,6 +43,5 @@
                 </mat-list>
             </mat-expansion-panel>
         </mat-accordion>
-    </mat-card>
 
 </div>
